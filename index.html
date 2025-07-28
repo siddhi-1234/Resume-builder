@@ -98,12 +98,154 @@
   </div>
 </section>
 
+<!-- Success Story Section -->
+ <section class="testimonials" id="testimonials">
+  <h2 class="section-title">What Our Users Say</h2>
+  <p class="section-subtitle">Thousands have landed interviews with ResumeCraft</p>
+
+  <div class="testimonial-container">
+    <div class="testimonial-card">
+      <img src="Images/customer1.jpg" alt="User Photo">
+      <p class="testimonial-text">"ResumeCraft made building my resume easy and fun. I landed 3 interviews in a week!"</p>
+      <h4 class="testimonial-name">Aarav Sharma</h4>
+      <p class="testimonial-title">Software Engineer @ TCS</p>
+    </div>
+
+    <div class="testimonial-card">
+      <img src="Images/customer3.jpg" alt="User Photo">
+      <p class="testimonial-text">"The templates are stunning and professional. Highly recommend this platform!"</p>
+      <h4 class="testimonial-name">Sneha Kapoor</h4>
+      <p class="testimonial-title">HR Manager @ Infosys</p>
+    </div>
+
+    <div class="testimonial-card">
+      <img src="Images/customer5.jpg" alt="User Photo">
+      <p class="testimonial-text">"Simple UI, powerful features. My resume got noticed instantly! It has so many features!"</p>
+      <h4 class="testimonial-name">Rohit Verma</h4>
+      <p class="testimonial-title">Marketing Associate @ Deloitte</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+ <section class="cta-section">
+  <div class="cta-content">
+    <h2>Ready to Craft Your Dream Resume?</h2>
+    <p>Start building your professional resume in just minutes!!</p>
+    <a href="#templates" class="cta-button">
+      Get Started Now
+      <i class="fa-solid fa-arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+<!-- FAQ Section -->
+ <section class="faq-section">
+  <h2>Frequently Asked Questions</h2>
+
+  <div class="faq-item">
+    <div class="faq-question">What is ResumeCraft? <span class="plus">+</span></div>
+    <div class="faq-answer">ResumeCraft is an online resume builder that helps you create professional resumes effortlessly.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">Is ResumeCraft free to use? <span class="plus">+</span></div>
+    <div class="faq-answer">Yes! You can build and download your resume for free without any hidden charges.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">Can I download my resume as a PDF? <span class="plus">+</span></div>
+    <div class="faq-answer">Absolutely. You can export your resume in PDF format with a single click.</div>
+  </div>
+</section>
+
+<!-- Footer -->
+ <footer class="site-footer">
+  <div class="footer-container">
+    <div class="ffooter-brand animate">
+      <img src="Images/logo.jpg" alt="ResumeCraft Logo" class="footer-logo" />
+      <h3>ResumeCraft</h3>
+      <p>Craft your dream resume effortlessly and land your next job with confidence.</p>
+    </div>
+
+    <div class="footer-links animate">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#templates">Templates</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#download">Download PDF</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-contact animate">
+      <h4>Contact</h4>
+      <p>Email: support@resumecraft.com</p>
+      <p>Phone: +1 234 567 890</p>
+    </div>
+
+    <div class="footer-social animate">
+      <h4>Follow Us</h4>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; 2025 ResumeCraft. All rights reserved.</p>
+  </div>
+</footer>
 
 
 
 
 
 
+
+
+
+
+
+        <script src="script.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
-    </body>
+
+        <!-- For FAQ -->
+   <script>
+  document.querySelectorAll(".faq-question").forEach(question => {
+    question.addEventListener("click", () => {
+      const faqItem = question.parentElement;
+
+      // Close other open items
+      document.querySelectorAll(".faq-item").forEach(item => {
+        if (item !== faqItem) item.classList.remove("open");
+      });
+
+      // Toggle current item
+      faqItem.classList.toggle("open");
+    });
+  });
+</script>
+
+<!-- For footer -->
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  });
+
+  document.querySelectorAll('.animate').forEach(el => observer.observe(el));
+</script>
+
+
+
+      </body>
  </html>
