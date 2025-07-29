@@ -866,3 +866,309 @@ html {
 }
 
 
+/* Feature.html */
+
+/* intro section */
+.features-hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 60px 100px;
+  background-color: #0a192f; /* keep consistent with your theme */
+  color: white; /* ensure text is visible */
+  min-height: 90vh; /* Make it tall enough to fill the screen */
+}
+
+.hero-content h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.hero-image img {
+  width: 100%;
+  max-width: 450px;
+}
+
+/* animation */
+/* Animation Keyframes */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Apply Animations */
+.hero-content {
+  animation: fadeInUp 1s ease-out forwards;
+  opacity: 0; /* Initial state for animation */
+  animation-delay: 0.2s;
+}
+
+.hero-image {
+  animation: fadeInRight 1.2s ease-out forwards;
+  opacity: 0; /* Initial state */
+  animation-delay: 0.5s;
+}
+
+/* Optional smoother transition fallback */
+.hero-content,
+.hero-image {
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* Feature section */
+/* Feature Grid Section */
+.feature-grid-section {
+  padding: 60px 20px;
+  background-color:  #0a192f; /* Changed to white for clarity */
+  text-align: center;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  color: #fff; /* Pure black for highest contrast */
+  margin-bottom: 40px;
+  font-weight: 800;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.feature-card {
+  background: #f9f9f9;
+  border-radius: 15px;
+  padding: 30px 20px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+}
+
+.feature-icon {
+  font-size: 2.8rem;
+  color: #0dcaf0;
+  margin-bottom: 20px;
+}
+
+.feature-card h3 {
+  font-size: 1.3rem;
+  color: #111111; /* Darker for clear visibility */
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.feature-card p {
+  font-size: 1rem;
+  color: #333333; /* Dark text for light background */
+  line-height: 1.6;
+}
+/* animation */
+/* Animation Keyframes */
+@keyframes fadeSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Feature Card Base Style (Already Exists, just enhanced) */
+.feature-card {
+  background: #f9f9f9;
+  border-radius: 15px;
+  padding: 30px 20px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  opacity: 0;
+  transform: translateY(40px);
+  will-change: transform, opacity;
+  text-align: center;
+  cursor: pointer;
+}
+.feature-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+}
+.feature-card:hover .feature-icon {
+  color: #0dcaf0; /* Bootstrap cyan */
+  transform: scale(1.2);
+}
+
+/* Animation when in view */
+.feature-card.visible {
+  animation: fadeSlideUp 0.8s ease-out forwards;
+}
+
+/* Mobile showcase */
+.mobile-showcase-section {
+  background-color:  #0a192f;
+  padding: 70px 20px;
+}
+
+.mobile-showcase {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.mobile-text {
+  flex: 1 1 500px;
+}
+
+.mobile-text h2 {
+  font-size: 2rem;
+  color: #0d6efd;
+  margin-bottom: 20px;
+}
+
+.mobile-text p {
+  font-size: 1.2rem;
+  color:#fff;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.mobile-features {
+  list-style: none;
+  padding: 0;
+}
+
+.mobile-features li {
+  font-size: 1rem;
+  color:#fff;
+  margin-bottom: 10px;
+}
+
+.mobile-features i {
+  color: #0dcaf0;
+  margin-right: 10px;
+}
+
+.mobile-image {
+  flex: 1 1 400px;
+  text-align: center;
+}
+
+.mobile-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  transform: scale(0.95);
+  transition: transform 0.5s ease;
+}
+
+.mobile-image img:hover {
+  transform: scale(1);
+}
+
+/* Animation for mobile-text */
+.mobile-text {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
+}
+
+/* When visible */
+.mobile-text.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* Template.html */
+/* Intro section */
+.template-hero {
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364); /* dark gradient */
+  padding: 100px 20px 80px;
+  color: #ffffff;
+}
+
+.template-hero .container {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.hero-heading {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+
+.hero-subtext {
+  font-size: 1.25rem;
+  color: #dddddd;
+  margin-bottom: 30px;
+}
+
+.cta-button {
+  font-size: 1rem;
+  padding: 12px 28px;
+  border-radius: 50px;
+  background-color: #00bfff;
+  color: white;
+  border: none;
+  transition: all 0.3s ease-in-out;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.cta-button:hover {
+  background-color: #0099cc;
+  transform: scale(1.05);
+}
+
+/* Optional: Fade-up animation */
+.animate-text {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease;
+}
+
+.animate-text.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+

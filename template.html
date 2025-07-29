@@ -1,0 +1,72 @@
+ <!DOCTYPE html>
+ <html>
+    <head>
+        <title> Resume Builder</title>
+
+        <!-- Bootstrap link -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+
+        <!--Font awesome icons -->
+       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+        <!-- Css linking -->
+         <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+
+        <!-- Navbar section -->
+<header class="header">
+  <a href="#" class="logo">
+    <img src="Images/logo.jpg" alt="ResumeCraft Logo" />
+    <span>ResumeCraft</span>
+  </a>
+  <nav class="navbar">
+    <a href="index.html">Home</a>
+    <a href="feature.html">Features</a>
+    <a href="template.html">Templates</a>
+    <a href="#contact">Contact</a>
+    <a href="#download">Download PDF</a>
+  </nav>
+
+  <div class="auth-buttons">
+    <button class="btn"><i class="fa fa-user-plus"></i> Sign Up</button>
+    <button class="btn"><i class="fa fa-sign-in-alt"></i> Login</button>
+  </div>
+</header>
+
+     <!-- Intro Section -->
+<section class="template-hero">
+  <div class="container animate-text">
+    <h1 class="hero-heading">Explore Our Resume Templates</h1>
+    <p class="hero-subtext">Choose from professionally designed templates to build your perfect resume in minutes.</p>
+    <a href="#template-grid" class="cta-button">Browse Templates</a>
+  </div>
+</section>
+ 
+      <!-- template grid section -->
+       
+
+
+
+
+
+
+<script src="script.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+
+       <!-- For intro section -->
+        <script>
+  const heroObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        heroObserver.unobserve(entry.target);
+      }
+    });
+  });
+
+  document.querySelectorAll('.animate-text').forEach(el => heroObserver.observe(el));
+</script>
+
+     </body>
+ </html>   
