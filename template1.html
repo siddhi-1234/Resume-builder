@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Edit Template 1</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+    <div class="theme-switcher">
+  <label>Theme:</label>
+  <select id="themeSelect">
+    <option value="light">Light</option>
+    <option value="dark">Dark</option>
+    <option value="blue">Blue</option>
+  </select>
+</div>
+
+  <div class="container">
+    <!-- Editor Form -->
+    <div class="editor-panel">
+      <h2>Edit Resume</h2>
+
+      <label>Upload Photo</label>
+      <input type="file" id="profilePicInput" accept="image/*">
+
+      <label>Full Name</label>
+      <input type="text" id="nameInput" placeholder="John Doe">
+
+      <label>Job Title</label>
+      <input type="text" id="titleInput" placeholder="Web Developer">
+
+      <label>Email</label>
+      <input type="email" id="emailInput" placeholder="you@example.com">
+
+      <label>Phone</label>
+      <input type="text" id="phoneInput" placeholder="+1 123 456 7890">
+
+      <label>Location</label>
+      <input type="text" id="locationInput" placeholder="City, Country">
+
+      <label>Summary</label>
+      <textarea id="summaryInput" placeholder="A brief summary about yourself..."></textarea>
+
+      <label>Experience</label>
+      <textarea id="experienceInput" placeholder="Job title, company, dates..."></textarea>
+
+      <label>Education</label>
+      <textarea id="educationInput" placeholder="Degree, institution, year..."></textarea>
+
+      <label>Skills</label>
+      <textarea id="skillsInput" placeholder="JavaScript, React, CSS..."></textarea>
+
+      <button id="downloadBtn">Download PDF</button>
+    </div>
+
+    <!-- Live Preview -->
+    <div class="preview-panel" id="resumePreview">
+      <div class="resume-header">
+        <img id="profilePreview" src="Images/profile-placeholder.jpg" alt="Profile">
+        <div>
+          <h1 id="namePreview">John Doe</h1>
+          <h2 id="titlePreview">Web Developer</h2>
+        </div>
+      </div>
+
+      <div class="resume-section">
+        <h3>Contact</h3>
+        <p id="emailPreview"></p>
+        <p id="phonePreview"></p>
+        <p id="locationPreview"></p>
+      </div>
+
+      <div class="resume-section">
+        <h3>Summary</h3>
+        <p id="summaryPreview"></p>
+      </div>
+
+      <div class="resume-section">
+        <h3>Experience</h3>
+        <p id="experiencePreview"></p>
+      </div>
+
+      <div class="resume-section">
+        <h3>Education</h3>
+        <p id="educationPreview"></p>
+      </div>
+
+      <div class="resume-section">
+        <h3>Skills</h3>
+        <p id="skillsPreview"></p>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script>
+  // Bind inputs to preview
+  const bind = (inputId, previewId) => {
+    document.getElementById(inputId).addEventListener("input", e => {
+      document.getElementById(previewId).textContent = e.target.value;
+    });
+  };
+
+  bind("nameInput", "namePreview");
+  bind("titleInput", "titlePreview");
+  bind("emailInput", "emailPreview");
+  bind("phoneInput", "phonePreview");
+  bind("locationInput", "locationPreview");
+  bind("summaryInput", "summaryPreview");
+  bind("experienceInput", "experiencePreview");
+  bind("educationInput", "educationPreview");
+  bind("skillsInput", "skillsPreview");
+
+  // Profile image preview
+  document.getElementById("profilePicInput").addEventListener("change", function(e) {
+    const reader = new FileReader();
+    reader.onload = () => {
+      document.getElementById("profilePreview").src = reader.result;
+    };
+    reader.readAsDataURL(e.target.files[0]);
+  });
+
+  // Download PDF
+  document.getElementById("downloadBtn").addEventListener("click", () => {
+    const preview = document.getElementById("resumePreview");
+    
+    // Clone for clean PDF generation
+    const clone = preview.cloneNode(true);
+    clone.style.position = 'absolute';
+    clone.style.left = '-9999px';
+    document.body.appendChild(clone);
+
+    html2pdf().from(clone).set({
+      margin: 0.2,
+      filename: 'Resume_Template1.pdf',
+      image: { type: 'jpeg', quality: 0.98 },
+      html2canvas: { scale: 2 },
+      jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
+    }).save().then(() => {
+      document.body.removeChild(clone); // cleanup
+    });
+  });
+</script>
+
+<!-- color theme -->
+ <script>
+  document.getElementById("themeSelect").addEventListener("change", function () {
+    document.body.classList.remove("light-theme", "dark-theme", "blue-theme");
+    document.body.classList.add(`${this.value}-theme`);
+  });
+
+  // Set default theme
+  document.body.classList.add("light-theme");
+</script>
+
+
+</body>
+</html>
