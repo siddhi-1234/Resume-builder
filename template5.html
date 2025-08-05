@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Editable Resume Template 5 with Full Border</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<style>
+body {
+  font-family: 'Arial', sans-serif;
+  background: #f0f0f0;
+  margin: 0;
+  padding: 40px;
+}
+.resume-wrapper {
+  background: #34495e; /* Dark outer border */
+  padding: 12px;       /* Border thickness */
+  border-radius: 10px;
+  max-width: 920px;
+  margin: auto;
+}
+.resume {
+  background: white;
+  display: flex;
+  max-width: 900px;
+  margin: auto;
+  border-radius: 6px;
+  overflow: hidden;
+}
+.left, .right {
+  padding: 40px 30px;
+}
+.left {
+  width: 280px;
+  background: #f7f7f7;
+  border-right: 1px solid #ccc; /* Thin divider line */
+}
+.right {
+  flex: 1;
+}
+.left h2, .right h2 {
+  font-size: 16px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  color: #34495e;
+  border-bottom: 1px solid #bbb;
+  padding-bottom: 4px;
+}
+.left p, .left li, .right p, .right li {
+  font-size: 12px;
+  line-height: 1.4;
+}
+.left ul, .right ul {
+  padding-left: 20px;
+  margin: 0 0 15px 0;
+}
+.languages-table {
+  width: 100%;
+  font-size: 12px;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+.languages-table td {
+  padding: 4px 0;
+}
+.languages-table td:nth-child(2) {
+  text-align: right;
+}
+.profile-info {
+  margin-bottom: 30px;
+  text-align: center;
+}
+.profile-info h1 {
+  font-size: 18px;
+  margin: 10px 0;
+  color: #34495e;
+}
+.profile-info p {
+  margin: 4px 0;
+  word-break: break-word;
+}
+.profile-initials, .profile-photo {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  line-height: 70px;
+  font-size: 28px;
+  color: white;
+  background: #34495e;
+  text-align: center;
+  margin-bottom: 10px;
+}
+.profile-photo {
+  display: none;
+  object-fit: cover;
+}
+.right h1 {
+  font-size: 24px;
+  margin: 0 0 20px 0;
+  color: #34495e;
+}
+.right ul {
+  list-style: disc inside;
+  margin: 0 0 15px 0;
+}
+.controls {
+  max-width: 920px;
+  margin: 30px auto;
+  text-align: center;
+}
+button {
+  display: inline-block;
+  margin: 10px 5px;
+  padding: 12px 24px;
+  font-size: 14px;
+  background: #34495e;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+button:hover {
+  background: #2c3e50;
+}
+input[type="file"] {
+  display: none;
+}
+label.upload-label {
+  display: inline-block;
+  margin: 10px 5px;
+  padding: 12px 24px;
+  font-size: 14px;
+  background: #34495e;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+label.upload-label:hover {
+  background: #2c3e50;
+}
+</style>
+</head>
+<body>
+
+<div class="resume-wrapper">
+  <div class="resume" id="resume" contenteditable="true">
+    <div class="left">
+      <div class="profile-info">
+        <div class="profile-initials" id="initials">A</div>
+        <img id="profile-photo" class="profile-photo" src="" alt="Profile Photo">
+        <h1>Your Name</h1>
+        <p>your.email@example.com</p>
+        <p>+91 5555 3345</p>
+        <p>City, Country</p>
+      </div>
+
+      <h2>Skills</h2>
+      <ul>
+        <li>Skill 1</li>
+        <li>Skill 2</li>
+        <li>Skill 3</li>
+      </ul>
+
+      <h2>Education and Training</h2>
+      <p>Degree<br>School Name<br>Graduation Year</p>
+
+      <h2>Languages</h2>
+      <table class="languages-table">
+        <tr><td>English:</td><td>Proficient</td></tr>
+        <tr><td>Spanish:</td><td>Intermediate</td></tr>
+      </table>
+
+      <h2>Interests and Hobbies</h2>
+      <p>Hobby 1</p>
+      <p>Hobby 2</p>
+    </div>
+
+    <div class="right">
+      <h1>Your Name</h1>
+
+      <h2>Summary</h2>
+      <p>Write your professional summary here...</p>
+
+      <h2>Experience</h2>
+      <p><strong>Job Title</strong> | Company Name, Dates</p>
+      <ul>
+        <li>Key responsibility or achievement 1</li>
+        <li>Key responsibility or achievement 2</li>
+      </ul>
+
+      <p><strong>Job Title</strong> | Company Name, Dates</p>
+      <ul>
+        <li>Key responsibility or achievement 1</li>
+        <li>Key responsibility or achievement 2</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="controls">
+  <label for="photo-upload" class="upload-label">Upload Photo</label>
+  <input type="file" accept="image/*" id="photo-upload" onchange="loadPhoto(event)">
+  <button onclick="downloadResume()">Download PDF</button>
+</div>
+
+<script>
+function loadPhoto(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    const photo = document.getElementById('profile-photo');
+    const initials = document.getElementById('initials');
+    photo.src = e.target.result;
+    photo.style.display = 'block';
+    initials.style.display = 'none';
+  };
+  reader.readAsDataURL(file);
+}
+
+function downloadResume() {
+  const element = document.getElementById('resume');
+  const opt = {
+    margin: 0,
+    filename: 'Resume.pdf',
+    image: { type: 'jpeg', quality: 0.98 },
+    html2canvas: { scale: 2, useCORS: true },
+    jsPDF: { unit: 'pt', format: 'a4', orientation: 'portrait' },
+    pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+  };
+  html2pdf().set(opt).from(element).save();
+}
+</script>
+
+</body>
+</html>

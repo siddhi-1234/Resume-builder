@@ -1171,221 +1171,107 @@ html {
 }
 
 /* template-grid section */
-.template-section {
-  background: #0a192f;;
-  padding: 60px 20px;
-}
-
-.section-title {
-  text-align: center;
-  font-size: 2rem;
-  margin-bottom: 40px;
-  color: #fff;
-}
-
+/* Your grid container: force it to layout items in rows with equal-sized cards */
 .template-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 30px;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* flexible columns */
+  gap: 40px;
+  padding: 0 40px;
+  justify-items: center; /* center cards in columns */
 }
 
+/* Make every card same height + flexible content inside */
 .template-card {
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-  overflow: hidden;
-  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* space out image, title, and button */
+  align-items: center;
   text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  transition: transform 0.3s ease;
+  width: 100%;       /* fill grid cell */
+  max-width: 320px;
+  height: 550px;     /* FORCE same height for all cards */
 }
 
+/* Images stay responsive inside cards */
 .template-card img {
-  width: 100%;
-  height: auto;
+  max-width: 100%;
   border-radius: 8px;
+  margin-bottom: 20px;
+  object-fit: contain; /* keep aspect ratio */
 }
 
+/* Title styles */
 .template-card h3 {
-  margin: 16px 0 12px;
+  margin-bottom: 18px;
+  font-weight: 600;
   font-size: 1.1rem;
   color: #333;
 }
 
-.btn-preview {
-  display: inline-block;
-  padding: 8px 16px;
+/* Buttons aligned to bottom */
+.template-card .preview-btn {
   background-color: #007bff;
+  border: none;
   color: white;
-  border-radius: 8px;
-  text-decoration: none;
-  transition: background 0.3s ease;
+  padding: 10px 20px;
+  font-size: 0.9rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: auto;  /* pushes button to bottom of card */
 }
 
-.btn-preview:hover {
+.template-card .preview-btn:hover {
   background-color: #0056b3;
 }
-
-/* Hover effect */
-.template-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+.template-section {
+  padding: 80px 20px 40px; /* top padding ensures heading sits comfortably above grid */
+  text-align: center;
+  color: white;
 }
 
-/* template1.html */
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: #f2f2f2;
+.template-section h2 {
+  margin-bottom: 50px; /* spacing between heading and cards grid */
+  font-size: 2.5rem;
+  font-weight: 700;
 }
 
-.container {
-  display: flex;
+/* template-category filter */
+.template-filter {
+  padding: 40px 20px 20px;
+  text-align: center;
+  background: #0b1e34; /* dark background to match your site theme */
+}
+
+.filter-container {
+  display: inline-flex;
   flex-wrap: wrap;
-  gap: 30px;
-  padding: 40px;
+  gap: 15px;
   justify-content: center;
 }
 
-.editor-panel {
-  flex: 1;
-  min-width: 300px;
-  max-width: 400px;
-  background: #fff;
-  padding: 25px;
-  border-radius: 12px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.08);
-}
-
-.editor-panel h2 {
-  margin-bottom: 20px;
-  color: #0A192F;
-}
-
-.editor-panel input,
-.editor-panel textarea {
-  width: 100%;
-  padding: 10px 12px;
-  margin: 10px 0;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 14px;
-}
-
-.editor-panel button {
-  margin-top: 20px;
-  width: 100%;
-  padding: 12px;
-  background: #0A192F;
-  color: white;
-  font-size: 16px;
-  border: none;
-  border-radius: 8px;
+.filter-btn {
+  background: transparent;
+  border: 2px solid #00bfff; /* bright border for clarity */
+  color: #00bfff;
+  padding: 10px 25px;
+  border-radius: 25px;
+  font-size: 1rem;
   cursor: pointer;
+  transition: 0.3s;
 }
 
-.editor-panel button:hover {
-  background: #173457;
+.filter-btn:hover,
+.filter-btn.active {
+  background: #00bfff;
+  color: #fff;
 }
 
-.preview-panel {
-  flex: 1;
-  min-width: 300px;
-  max-width: 500px;
-  background: #ffffff;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.08);
-}
 
-.resume-header {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
 
-.resume-header img {
-  width: 90px;
-  height: 90px;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 2px solid #0A192F;
-}
 
-.resume-header h1 {
-  font-size: 24px;
-  margin: 0;
-  color: #0A192F;
-}
-
-.resume-header h2 {
-  font-size: 16px;
-  margin: 2px 0 0;
-  color: #555;
-}
-
-.resume-section {
-  margin-top: 20px;
-}
-
-.resume-section h3 {
-  color: #0A192F;
-  font-size: 18px;
-  margin-bottom: 5px;
-  border-bottom: 1px solid #ddd;
-  padding-bottom: 3px;
-}
-
-.resume-section p {
-  margin: 5px 0;
-  font-size: 14px;
-  color: #333;
-}
-
-.theme-switcher {
-  display: flex;
-  justify-content: flex-end;
-  gap: 10px;
-  margin: 10px 40px 0;
-  font-size: 14px;
-}
-
-:root {
-  --primary-bg: #f2f2f2;
-  --text-color: #0A192F;
-  --card-bg: #ffffff;
-}
-
-body.light-theme {
-  --primary-bg: #f2f2f2;
-  --text-color: #0A192F;
-  --card-bg: #ffffff;
-}
-
-body.dark-theme {
-  --primary-bg: #121212;
-  --text-color: #e0e0e0;
-  --card-bg: #1e1e1e;
-}
-
-body.blue-theme {
-  --primary-bg: #e3f2fd;
-  --text-color: #0d47a1;
-  --card-bg: #ffffff;
-}
-
-/* Apply theme */
-body {
-  background-color: var(--primary-bg);
-  color: var(--text-color);
-}
-
-.editor-panel, .preview-panel {
-  background: var(--card-bg);
-  color: var(--text-color);
-}
-
-.resume-header h1, .resume-header h2,
-.resume-section h3, .resume-section p {
-  color: var(--text-color);
-}

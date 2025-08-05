@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Editable Resume with PDF Export</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<style>
+body {
+  font-family: 'Georgia', serif;
+  background: #f5f5f5;
+  margin: 0;
+  padding: 30px;
+}
+.resume {
+  background: white;
+  max-width: 800px;
+  margin: auto;
+  padding: 40px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.15);
+  border-radius: 10px;
+}
+.header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+.header .initials {
+  font-size: 28px;
+  font-weight: bold;
+  border: 2px solid black;
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+}
+.header .name {
+  font-size: 28px;
+  font-weight: bold;
+}
+.header .contact {
+  font-size: 13px;
+  margin-top: 10px;
+}
+.section {
+  margin-bottom: 30px;
+}
+.section h2 {
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-bottom: 1px solid #aaa;
+  padding-bottom: 4px;
+  margin-bottom: 10px;
+}
+.section p, .section li {
+  font-size: 13px;
+  line-height: 1.5;
+  margin: 5px 0;
+}
+.section ul {
+  list-style: disc inside;
+  padding: 0;
+}
+.experience .job {
+  margin-bottom: 12px;
+}
+.job-title {
+  font-weight: bold;
+  display: inline-block;
+}
+.job-date {
+  float: right;
+  font-size: 12px;
+  color: #555;
+}
+.languages-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.languages-table td {
+  padding: 6px 0;
+}
+.languages-table td:nth-child(2) {
+  text-align: right;
+}
+button {
+  display: block;
+  margin: 40px auto 0;
+  padding: 12px 24px;
+  font-size: 14px;
+  background: #2c3e50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+button:hover {
+  background: #1a242f;
+}
+</style>
+</head>
+<body>
+
+<div class="resume" id="resume" contenteditable="true">
+  <div class="header">
+    <div class="initials">XX</div>
+    <div class="name">Your Name</div>
+    <div class="contact">
+      your.email@example.com | +123456789 | Your Address
+    </div>
+  </div>
+
+  <div class="section summary">
+    <h2>Summary</h2>
+    <p>Write a brief professional summary here...</p>
+  </div>
+
+  <div class="section skills">
+    <h2>Skills</h2>
+    <ul>
+      <li>Skill 1</li>
+      <li>Skill 2</li>
+      <li>Skill 3</li>
+    </ul>
+  </div>
+
+  <div class="section experience">
+    <h2>Experience</h2>
+
+    <div class="job">
+      <span class="job-title">Job Title at Company Name</span>
+      <span class="job-date">Start Date - End Date</span>
+      <ul>
+        <li>Responsibility or achievement 1</li>
+        <li>Responsibility or achievement 2</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <span class="job-title">Job Title at Company Name</span>
+      <span class="job-date">Start Date - End Date</span>
+      <ul>
+        <li>Responsibility or achievement 1</li>
+        <li>Responsibility or achievement 2</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section education">
+    <h2>Education and Training</h2>
+    <p>Degree, School Name, Graduation Year</p>
+  </div>
+
+  <div class="section languages">
+    <h2>Languages</h2>
+    <table class="languages-table">
+      <tr><td>English</td><td>Proficient</td></tr>
+      <tr><td>Spanish</td><td>Intermediate</td></tr>
+    </table>
+  </div>
+</div>
+
+<button onclick="downloadResume()">Download PDF</button>
+
+<script>
+function downloadResume() {
+  const element = document.getElementById('resume');
+  const opt = {
+    margin: 0,
+    filename: 'Resume.pdf',
+    image: { type: 'jpeg', quality: 0.98 },
+    html2canvas: { scale: 2, useCORS: true },
+    jsPDF: { unit: 'pt', format: 'a4', orientation: 'portrait' },
+    pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+  };
+  html2pdf().set(opt).from(element).save();
+}
+</script>
+
+</body>
+</html>

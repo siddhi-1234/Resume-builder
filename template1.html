@@ -1,160 +1,246 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Edit Template 1</title>
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8">
+<title>Editable Modern Resume</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f4f4;
+  margin: 0;
+  padding: 20px;
+}
+.resume {
+  display: block;
+  max-width: 800px;
+  margin: auto;
+  box-shadow: 0 0 20px rgba(0,0,0,0.15);
+  background: white;
+  border-radius: 8px;
+  overflow: visible;
+}
+.resume .container {
+  display: flex;
+  flex-wrap: wrap;
+}
+.sidebar {
+  background: #2c3e50;
+  color: white;
+  width: 220px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 20px;
+  box-sizing: border-box;
+}
+.sidebar img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid white;
+  margin-bottom: 15px;
+}
+.sidebar .initials {
+  width: 80px;
+  height: 80px;
+  border-radius: 10px;
+  background: #34495e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+.sidebar .contact-info {
+  font-size: 12px;
+  text-align: center;
+  line-height: 1.4;
+}
+.main-content {
+  flex: 1;
+  padding: 30px;
+  box-sizing: border-box;
+  background: white;
+}
+.section {
+  margin-bottom: 25px;
+}
+.section h2 {
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 5px;
+  font-size: 16px;
+  text-transform: uppercase;
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+.section p, .section li {
+  font-size: 13px;
+  line-height: 1.5;
+}
+.skills ul {
+  columns: 2;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.skills li::before {
+  content: "• ";
+  color: #2c3e50;
+}
+.experience .job-title {
+  font-weight: bold;
+}
+.experience .date {
+  float: right;
+  font-size: 12px;
+  color: #555;
+}
+input, textarea {
+  width: 100%;
+  margin-bottom: 8px;
+  padding: 6px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 13px;
+}
+button {
+  margin: 30px auto;
+  display: block;
+  padding: 10px 20px;
+  background: #2c3e50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+button:hover {
+  background: #1a242f;
+}
+</style>
 </head>
 <body>
 
-    <div class="theme-switcher">
-  <label>Theme:</label>
-  <select id="themeSelect">
-    <option value="light">Light</option>
-    <option value="dark">Dark</option>
-    <option value="blue">Blue</option>
-  </select>
-</div>
-
+<div class="resume" id="resume">
   <div class="container">
-    <!-- Editor Form -->
-    <div class="editor-panel">
-      <h2>Edit Resume</h2>
-
-      <label>Upload Photo</label>
-      <input type="file" id="profilePicInput" accept="image/*">
-
-      <label>Full Name</label>
-      <input type="text" id="nameInput" placeholder="John Doe">
-
-      <label>Job Title</label>
-      <input type="text" id="titleInput" placeholder="Web Developer">
-
-      <label>Email</label>
-      <input type="email" id="emailInput" placeholder="you@example.com">
-
-      <label>Phone</label>
-      <input type="text" id="phoneInput" placeholder="+1 123 456 7890">
-
-      <label>Location</label>
-      <input type="text" id="locationInput" placeholder="City, Country">
-
-      <label>Summary</label>
-      <textarea id="summaryInput" placeholder="A brief summary about yourself..."></textarea>
-
-      <label>Experience</label>
-      <textarea id="experienceInput" placeholder="Job title, company, dates..."></textarea>
-
-      <label>Education</label>
-      <textarea id="educationInput" placeholder="Degree, institution, year..."></textarea>
-
-      <label>Skills</label>
-      <textarea id="skillsInput" placeholder="JavaScript, React, CSS..."></textarea>
-
-      <button id="downloadBtn">Download PDF</button>
+    <div class="sidebar">
+      <img id="profileImage" src="" alt="Profile Photo" style="display:none;">
+      <div class="initials" id="initials">XX</div>
+      <div class="contact-info">
+        <p id="address"></p>
+        <p id="email"></p>
+        <p id="phone"></p>
+      </div>
     </div>
-
-    <!-- Live Preview -->
-    <div class="preview-panel" id="resumePreview">
-      <div class="resume-header">
-        <img id="profilePreview" src="Images/profile-placeholder.jpg" alt="Profile">
-        <div>
-          <h1 id="namePreview">John Doe</h1>
-          <h2 id="titlePreview">Web Developer</h2>
-        </div>
+    <div class="main-content">
+      <div class="section summary">
+        <h2>Summary</h2>
+        <p id="summary"></p>
       </div>
 
-      <div class="resume-section">
-        <h3>Contact</h3>
-        <p id="emailPreview"></p>
-        <p id="phonePreview"></p>
-        <p id="locationPreview"></p>
+      <div class="section skills">
+        <h2>Skills</h2>
+        <ul id="skillsList"></ul>
       </div>
 
-      <div class="resume-section">
-        <h3>Summary</h3>
-        <p id="summaryPreview"></p>
+      <div class="section experience">
+        <h2>Experience</h2>
+        <p class="job-title"><span id="exp1Title"></span> <span class="date" id="exp1Date"></span></p>
+        <ul id="exp1Desc"></ul>
+
+        <p class="job-title"><span id="exp2Title"></span> <span class="date" id="exp2Date"></span></p>
+        <ul id="exp2Desc"></ul>
       </div>
 
-      <div class="resume-section">
-        <h3>Experience</h3>
-        <p id="experiencePreview"></p>
+      <div class="section education">
+        <h2>Education and Training</h2>
+        <p id="education"></p>
       </div>
 
-      <div class="resume-section">
-        <h3>Education</h3>
-        <p id="educationPreview"></p>
-      </div>
-
-      <div class="resume-section">
-        <h3>Skills</h3>
-        <p id="skillsPreview"></p>
+      <div class="section languages">
+        <h2>Languages</h2>
+        <p id="languages"></p>
       </div>
     </div>
   </div>
+</div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<!-- Inputs below the resume preview -->
+<div style="max-width:800px; margin:30px auto;">
+  <h3>Fill Your Details:</h3>
+
+  <label>Upload Photo:</label>
+  <input type="file" accept="image/*" onchange="loadImage(event)">
+
+  <label>Initials:</label><input type="text" oninput="document.getElementById('initials').textContent=this.value || 'XX'">
+  <label>Address:</label><input type="text" oninput="document.getElementById('address').textContent=this.value">
+  <label>Email:</label><input type="text" oninput="document.getElementById('email').textContent=this.value">
+  <label>Phone:</label><input type="text" oninput="document.getElementById('phone').textContent=this.value">
+  <label>Summary:</label><textarea oninput="document.getElementById('summary').textContent=this.value"></textarea>
+
+  <label>Skills (comma separated):</label>
+  <input type="text" oninput="updateSkills(this.value)">
+
+  <label>Experience 1 Title:</label><input type="text" oninput="document.getElementById('exp1Title').textContent=this.value">
+  <label>Experience 1 Date:</label><input type="text" oninput="document.getElementById('exp1Date').textContent=this.value">
+  <label>Experience 1 Descriptions (semicolon separated):</label><input type="text" oninput="updateList('exp1Desc', this.value)">
+
+  <label>Experience 2 Title:</label><input type="text" oninput="document.getElementById('exp2Title').textContent=this.value">
+  <label>Experience 2 Date:</label><input type="text" oninput="document.getElementById('exp2Date').textContent=this.value">
+  <label>Experience 2 Descriptions (semicolon separated):</label><input type="text" oninput="updateList('exp2Desc', this.value)">
+
+  <label>Education:</label><textarea oninput="document.getElementById('education').textContent=this.value"></textarea>
+  <label>Languages:</label><textarea oninput="document.getElementById('languages').textContent=this.value"></textarea>
+
+  <button onclick="downloadResume()">Download PDF</button>
+</div>
+
 <script>
-  // Bind inputs to preview
-  const bind = (inputId, previewId) => {
-    document.getElementById(inputId).addEventListener("input", e => {
-      document.getElementById(previewId).textContent = e.target.value;
-    });
+function updateSkills(value) {
+  const skills = value.split(',').map(s => s.trim()).filter(s => s);
+  const list = document.getElementById('skillsList');
+  list.innerHTML = '';
+  skills.forEach(skill => {
+    const li = document.createElement('li');
+    li.textContent = skill;
+    list.appendChild(li);
+  });
+}
+function updateList(elementId, value) {
+  const items = value.split(';').map(s => s.trim()).filter(s => s);
+  const list = document.getElementById(elementId);
+  list.innerHTML = '';
+  items.forEach(item => {
+    const li = document.createElement('li');
+    li.textContent = item;
+    list.appendChild(li);
+  });
+}
+function loadImage(event) {
+  const reader = new FileReader();
+  reader.onload = function () {
+    const img = document.getElementById("profileImage");
+    img.src = reader.result;
+    img.style.display = 'block';
   };
-
-  bind("nameInput", "namePreview");
-  bind("titleInput", "titlePreview");
-  bind("emailInput", "emailPreview");
-  bind("phoneInput", "phonePreview");
-  bind("locationInput", "locationPreview");
-  bind("summaryInput", "summaryPreview");
-  bind("experienceInput", "experiencePreview");
-  bind("educationInput", "educationPreview");
-  bind("skillsInput", "skillsPreview");
-
-  // Profile image preview
-  document.getElementById("profilePicInput").addEventListener("change", function(e) {
-    const reader = new FileReader();
-    reader.onload = () => {
-      document.getElementById("profilePreview").src = reader.result;
-    };
-    reader.readAsDataURL(e.target.files[0]);
-  });
-
-  // Download PDF
-  document.getElementById("downloadBtn").addEventListener("click", () => {
-    const preview = document.getElementById("resumePreview");
-    
-    // Clone for clean PDF generation
-    const clone = preview.cloneNode(true);
-    clone.style.position = 'absolute';
-    clone.style.left = '-9999px';
-    document.body.appendChild(clone);
-
-    html2pdf().from(clone).set({
-      margin: 0.2,
-      filename: 'Resume_Template1.pdf',
-      image: { type: 'jpeg', quality: 0.98 },
-      html2canvas: { scale: 2 },
-      jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
-    }).save().then(() => {
-      document.body.removeChild(clone); // cleanup
-    });
-  });
+  reader.readAsDataURL(event.target.files[0]);
+}
+function downloadResume() {
+  const element = document.getElementById('resume');
+  const opt = {
+    margin: 0,
+    filename: 'Resume.pdf',
+    image: { type: 'jpeg', quality: 0.98 },
+    html2canvas: { scale: 2, useCORS: true },
+    jsPDF: { unit: 'pt', format: 'a4', orientation: 'portrait' },
+    pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+  };
+  html2pdf().set(opt).from(element).save();
+}
 </script>
-
-<!-- color theme -->
- <script>
-  document.getElementById("themeSelect").addEventListener("change", function () {
-    document.body.classList.remove("light-theme", "dark-theme", "blue-theme");
-    document.body.classList.add(`${this.value}-theme`);
-  });
-
-  // Set default theme
-  document.body.classList.add("light-theme");
-</script>
-
 
 </body>
 </html>
