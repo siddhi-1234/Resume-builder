@@ -1,0 +1,154 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Template 8 - Editable Resume</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <style>
+    body {
+      font-family: 'Helvetica', sans-serif;
+      margin: 0;
+      color: #000;
+    }
+    .resume-container {
+      max-width: 1000px;
+      margin: 40px auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 30px;
+      background: #fff;
+      padding: 40px;
+      border: 3px solid #f26522;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+    .left-column {
+      padding-right: 20px;
+    }
+    .right-column {
+      background: #f26522;
+      color: white;
+      padding: 30px 20px;
+      border-radius: 8px;
+    }
+    .section-title {
+      color: #f26522;
+      font-size: 1.3rem;
+      font-weight: bold;
+      border-bottom: 2px solid #f26522;
+      margin-top: 40px;
+      margin-bottom: 20px;
+      padding-bottom: 4px;
+    }
+    .right-section-title {
+      color: white;
+      font-size: 1.2rem;
+      font-weight: bold;
+      border-bottom: 1px solid white;
+      margin-top: 30px;
+      margin-bottom: 20px;
+      padding-bottom: 4px;
+    }
+    ul {
+      padding-left: 20px;
+      margin: 0;
+    }
+    ul li {
+      margin-bottom: 10px;
+    }
+    .right-column p, .right-column li {
+      color: white;
+    }
+    .download-btn {
+      display: block;
+      margin: 40px auto 0;
+      padding: 12px 30px;
+      background-color: #f26522;
+      color: white;
+      border: none;
+      font-size: 1.1rem;
+      border-radius: 8px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .download-btn:hover {
+      background-color: #c1440f;
+    }
+    [contenteditable=true]:focus {
+      outline: 2px dashed #f26522;
+      
+    }
+  </style>
+</head>
+<body>
+
+  <div id="resume" class="resume-container">
+
+    <div class="left-column">
+      <section>
+        <h2 class="section-title">Professional Experience</h2>
+
+        <p contenteditable="true"><strong>Senior Software Engineer</strong><br>
+        <em>Accenture Digital Delivery Center, Detroit, MI | August 2018 - Current</em></p>
+        <ul>
+          <li contenteditable="true">Oversee the development, support, and maintenance of web reservation systems for 36 client accounts.</li>
+          <li contenteditable="true">Manage a team of over 20 engineers developing APIs, driving professional development, and conducting evaluations.</li>
+          <li contenteditable="true">Spearhead Agile-Waterfall hybrid methodologies to improve resource allocation and mitigate delays.</li>
+        </ul>
+
+        <p contenteditable="true"><strong>IT Specialist I</strong><br>
+        <em>Department of Technology, Management and Budget, Lansing, MI | October 2012 - Current</em></p>
+        <ul>
+          <li contenteditable="true">Administer personnel information systems for over 350 employees.</li>
+          <li contenteditable="true">Manage front-end and back-end development, QA, and automation.</li>
+          <li contenteditable="true">Design and implement network infrastructure upgrades and server configurations.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="section-title">Education</h2>
+        <p contenteditable="true">Master of Science in Information Systems - Present<br>Michigan Central University, Detroit, MI</p>
+        <p contenteditable="true">Bachelor of Science in Computer Science - July 2012<br>Michigan Central University, Mount Pleasant, MI</p>
+      </section>
+
+      <section>
+        <h2 class="section-title">Certifications</h2>
+        <ul>
+          <li contenteditable="true">Microsoft Certified Solutions Developer, 2014</li>
+          <li contenteditable="true">AWS Certified Solutions Architect – Professional, 2017</li>
+          <li contenteditable="true">Oracle Certified Developer MySQL 5.6 Developer, 2018</li>
+        </ul>
+      </section>
+    </div>
+
+    <div class="right-column">
+      <h1 contenteditable="true">Leopold Rose</h1>
+      <p contenteditable="true">Ferndale, MI 48220</p>
+      <p contenteditable="true">jpserra09@emailme.com</p>
+      <p contenteditable="true">(248) 901-2345</p>
+
+      <p contenteditable="true" style="margin-top: 20px;">A results-driven software engineer with eight years of experience in implementing advanced technology and business solutions in public and private industries. Adept at coordinating with technical teams and stakeholders to manage large-scale projects and deployments.</p>
+
+      <h2 class="right-section-title">Key Skills</h2>
+      <ul>
+        <li contenteditable="true"><strong>Program languages:</strong> C#, .NET, PHP, HTML, Java, MySQL, SQL, PostgreSQL, Turbo C, Visual Basic, Perl, etc.</li>
+        <li contenteditable="true"><strong>Operating systems:</strong> RedHat, Mandrake, SuSe, Linux</li>
+        <li contenteditable="true">Linux operating systems</li>
+        <li contenteditable="true">Project management</li>
+        <li contenteditable="true">Agile software development</li>
+        <li contenteditable="true">Cross-functional leadership</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <button class="download-btn" onclick="downloadPDF()">Download PDF</button>
+
+  <script>
+    function downloadPDF() {
+      const element = document.getElementById('resume');
+      html2pdf().from(element).save('resume.pdf');
+    }
+  </script>
+</body>
+</html>

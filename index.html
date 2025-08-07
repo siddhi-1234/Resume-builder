@@ -11,6 +11,9 @@
 
         <!-- Css linking -->
          <link rel="stylesheet" href="style.css">
+
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     </head>
     <body>
         
@@ -24,15 +27,26 @@
     <a href="index.html">Home</a>
     <a href="feature.html">Features</a>
     <a href="template.html">Templates</a>
-    <a href="#contact">Contact</a>
-    <a href="#download">Download PDF</a>
+    <a href="contact.html">Contact</a>
   </nav>
 
   <div class="auth-buttons">
-    <button class="btn"><i class="fa fa-user-plus"></i> Sign Up</button>
-    <button class="btn"><i class="fa fa-sign-in-alt"></i> Login</button>
+    <button class="btn" onclick="openModal('signup')"><i class="fa fa-user-plus"></i> Sign Up</button>
+    <button class="btn" onclick="openModal('login')"><i class="fa fa-sign-in-alt"></i> Login</button>
   </div>
 </header>
+
+   <!-- Login and Sign up -->
+
+<div id="authModal" class="auth-modal">
+  <div class="auth-modal-content">
+    <span class="auth-modal-close" onclick="closeModal()">&times;</span>
+    <div id="modalContent"></div>
+  </div>
+</div>
+
+
+
 
 <!-- Banner section -->
  <section class="hero" id="home">
@@ -103,7 +117,7 @@
   <h2 class="section-title">What Our Users Say</h2>
   <p class="section-subtitle">Thousands have landed interviews with ResumeCraft</p>
 
-  <div class="testimonial-container">
+  <div class="testimonial-container animate-testimonials">
     <div class="testimonial-card">
       <img src="Images/customer1.jpg" alt="User Photo">
       <p class="testimonial-text">"ResumeCraft made building my resume easy and fun. I landed 3 interviews in a week!"</p>
@@ -111,14 +125,14 @@
       <p class="testimonial-title">Software Engineer @ TCS</p>
     </div>
 
-    <div class="testimonial-card">
+    <div class="testimonial-card animate-testimonials">
       <img src="Images/customer3.jpg" alt="User Photo">
       <p class="testimonial-text">"The templates are stunning and professional. Highly recommend this platform!"</p>
       <h4 class="testimonial-name">Sneha Kapoor</h4>
       <p class="testimonial-title">HR Manager @ Infosys</p>
     </div>
 
-    <div class="testimonial-card">
+    <div class="testimonial-card animate-testimonials">
       <img src="Images/customer5.jpg" alt="User Photo">
       <p class="testimonial-text">"Simple UI, powerful features. My resume got noticed instantly! It has so many features!"</p>
       <h4 class="testimonial-name">Rohit Verma</h4>
@@ -174,8 +188,7 @@
         <li><a href="index.html">Home</a></li>
         <li><a href="feature.html">Features</a></li>
         <li><a href="template.html">Templates</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <li><a href="#download">Download PDF</a></li>
+        <li><a href="contact.html">Contact</a></li>
       </ul>
     </div>
 
@@ -245,6 +258,65 @@
   document.querySelectorAll('.animate').forEach(el => observer.observe(el));
 </script>
 
+    <!-- For login and sign in -->
+     <script>
+function openModal(type) {
+  const modal = document.getElementById('authModal');
+  const content = document.getElementById('modalContent');
+  modal.style.display = 'block';
+
+  if (type === 'signup') {
+    content.innerHTML = `
+      <h2>Sign Up</h2>
+      <form>
+        <input type="text" placeholder="Full Name" required>
+        <input type="email" placeholder="Email" required>
+        <input type="password" placeholder="Password" required>
+        <button type="submit">Create Account</button>
+      </form>
+    `;
+  } else if (type === 'login') {
+    content.innerHTML = `
+      <h2>Login</h2>
+      <form>
+        <input type="email" placeholder="Email" required>
+        <input type="password" placeholder="Password" required>
+        <button type="submit">Login</button>
+      </form>
+    `;
+  }
+}
+
+function closeModal() {
+  document.getElementById('authModal').style.display = 'none';
+}
+
+// Close modal when clicking outside modal content
+window.onclick = function(event) {
+  const modal = document.getElementById('authModal');
+  if (event.target === modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
+
+    <!-- success story section -->
+     <script>
+  const testimonialObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        testimonialObserver.unobserve(entry.target);
+      }
+    });
+  }, {
+    rootMargin: '0px 0px -30% 0px' // triggers earlier
+  });
+
+  document.querySelectorAll('.animate-testimonials').forEach(el =>
+    testimonialObserver.observe(el)
+  );
+</script>
 
 
       </body>

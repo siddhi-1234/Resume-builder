@@ -1,0 +1,141 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Template 7 - Editable Resume</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      color: #000;
+    }
+    .resume-container {
+      max-width: 800px;
+      margin: 40px auto;
+      background: #fff;
+      padding: 40px;
+      border: 3px solid #005baa;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+    .header {
+      text-align: left;
+      margin-bottom: 30px;
+    }
+    .header h1 {
+      color: #005baa;
+      margin: 0;
+      font-size: 2rem;
+    }
+    .header p {
+      margin: 5px 0;
+    }
+    .section-title {
+      color: #005baa;
+      font-size: 1.3rem;
+      font-weight: bold;
+      border-bottom: 2px solid #005baa;
+      margin-top: 40px;
+      margin-bottom: 20px;
+      padding-bottom: 4px;
+    }
+    ul {
+      padding-left: 20px;
+      margin: 0;
+    }
+    ul li {
+      margin-bottom: 10px;
+    }
+    .download-btn {
+      display: block;
+      margin: 40px auto 0;
+      padding: 12px 30px;
+      background-color: #005baa;
+      color: white;
+      border: none;
+      font-size: 1.1rem;
+      border-radius: 8px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .download-btn:hover {
+      background-color: #003d7a;
+    }
+    [contenteditable=true]:focus {
+      outline: 2px dashed #005baa;
+      
+    }
+  </style>
+</head>
+<body>
+
+  <div id="resume" class="resume-container">
+
+    <div class="header">
+      <h1 contenteditable="true">Courtney Wu</h1>
+      <p contenteditable="true">Dallas, TX 89012</p>
+      <p contenteditable="true">(678) 901-2345</p>
+      <p contenteditable="true">c.wu@email.com</p>
+    </div>
+
+    <section>
+      <p contenteditable="true"><strong>A senior software developer with eight years of experience creating innovative Electronic Health Records (EHR) and Personal Health Records (PHR) systems for enterprise customers within the health care industry. A proven track record of leading diverse teams throughout all phases of the SDLC. Adept at recruiting and nurturing talent to enhance organizational growth and performance.</strong></p>
+    </section>
+
+    <section>
+      <h2 class="section-title">Professional Experience</h2>
+
+      <p contenteditable="true"><strong>Senior Software Developer</strong><br>
+      <em>National General Insurance, Dallas, TX | February 2018 - Current</em></p>
+      <ul>
+        <li contenteditable="true">Design cutting-edge software applications to support EHR systems for a major health insurance agency with over 20 million insurees.</li>
+        <li contenteditable="true">Troubleshoot programming errors and automate software testing processes to save over $100,000 annually.</li>
+        <li contenteditable="true">Collaborate with teams to identify improvements and new features for existing products.</li>
+        <li contenteditable="true">Manage a team of eight developers, assign responsibilities, deliver training, and provide mentorship.</li>
+      </ul>
+
+      <p contenteditable="true"><strong>Software Developer</strong><br>
+      <em>Health One Alliance, Dallas, TX | June 2012 - Current</em></p>
+      <ul>
+        <li contenteditable="true">Coordinated with a team of 15 developers to enhance the UI for online systems impacting over 200,000 users.</li>
+        <li contenteditable="true">Consulted with clients to assess business needs and ensure requirements alignment.</li>
+        <li contenteditable="true">Performed QA testing, troubleshoot issues, and provided debugging support.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2 class="section-title">Key Skills</h2>
+      <ul>
+        <li contenteditable="true"><strong>Software development</strong></li>
+        <li contenteditable="true"><strong>Programming Languages: Java, Python, Ruby</strong></li>
+        <li contenteditable="true"><strong>EHR</strong></li>
+        <li contenteditable="true"><strong>Database management</strong></li>
+        <li contenteditable="true"><strong>New feature development</strong></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2 class="section-title">Education</h2>
+      <p contenteditable="true">July 2012<br>Bachelor of Science in Software Engineering<br>Erik Jonsson School of Engineering and Computer Science, The University of Texas at Dallas, Richardson, TX</p>
+    </section>
+
+    <section>
+      <h2 class="section-title">Certifications</h2>
+      <ul>
+        <li contenteditable="true">Professional Certificate in Data Science, HarvardX, 2015</li>
+      </ul>
+    </section>
+
+  </div>
+
+  <button class="download-btn" onclick="downloadPDF()">Download PDF</button>
+
+  <script>
+    function downloadPDF() {
+      const element = document.getElementById('resume');
+      html2pdf().from(element).save('resume.pdf');
+    }
+  </script>
+</body>
+</html>

@@ -11,6 +11,9 @@
 
         <!-- Css linking -->
          <link rel="stylesheet" href="style.css">
+
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     </head>
     <body>
 
@@ -24,15 +27,24 @@
     <a href="index.html">Home</a>
     <a href="feature.html">Features</a>
     <a href="template.html">Templates</a>
-    <a href="#contact">Contact</a>
-    <a href="#download">Download PDF</a>
+    <a href="contact.html">Contact</a>
+    
   </nav>
 
   <div class="auth-buttons">
-    <button class="btn"><i class="fa fa-user-plus"></i> Sign Up</button>
-    <button class="btn"><i class="fa fa-sign-in-alt"></i> Login</button>
+    <button class="btn" onclick="openModal('signup')"><i class="fa fa-user-plus"></i> Sign Up</button>
+    <button class="btn" onclick="openModal('login')"><i class="fa fa-sign-in-alt"></i> Login</button>
   </div>
 </header>
+
+<!-- Login and Sign up -->
+
+<div id="authModal" class="auth-modal">
+  <div class="auth-modal-content">
+    <span class="auth-modal-close" onclick="closeModal()">&times;</span>
+    <div id="modalContent"></div>
+  </div>
+</div>
 
      <!-- Intro Section -->
 <section class="template-hero">
@@ -120,8 +132,56 @@
   </div>
        </section>
 
+       
+       <!-- CTA section -->
+        <section class="cta-section">
+  <div class="cta-content">
+    <h2>Let’s Connect!</h2>
+    <p>Start building your professional resume in just minutes!!</p>
+    <a href="template.html" class="cta-button">Use Templates!!</a>
+  </div>
+       </section>
 
+       <!-- Footer -->
+ <footer class="site-footer">
+  <div class="footer-container">
+    <div class="ffooter-brand animate">
+      <img src="Images/logo.jpg" alt="ResumeCraft Logo" class="footer-logo" />
+      <h3>ResumeCraft</h3>
+      <p>Craft your dream resume effortlessly and land your next job with confidence.</p>
+    </div>
 
+    <div class="footer-links animate">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="feature.html">Features</a></li>
+        <li><a href="template.html">Templates</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-contact animate">
+      <h4>Contact</h4>
+      <p>Email: support@resumecraft.com</p>
+      <p>Phone: +1 234 567 890</p>
+    </div>
+
+    <div class="footer-social animate">
+      <h4>Follow Us</h4>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; 2025 ResumeCraft. All rights reserved.</p>
+  </div>
+</footer>
 
 
 
@@ -168,6 +228,64 @@
     });
   });
 </script>
+
+          <!-- For login and sign in -->
+     <script>
+function openModal(type) {
+  const modal = document.getElementById('authModal');
+  const content = document.getElementById('modalContent');
+  modal.style.display = 'block';
+
+  if (type === 'signup') {
+    content.innerHTML = `
+      <h2>Sign Up</h2>
+      <form>
+        <input type="text" placeholder="Full Name" required>
+        <input type="email" placeholder="Email" required>
+        <input type="password" placeholder="Password" required>
+        <button type="submit">Create Account</button>
+      </form>
+    `;
+  } else if (type === 'login') {
+    content.innerHTML = `
+      <h2>Login</h2>
+      <form>
+        <input type="email" placeholder="Email" required>
+        <input type="password" placeholder="Password" required>
+        <button type="submit">Login</button>
+      </form>
+    `;
+  }
+}
+
+function closeModal() {
+  document.getElementById('authModal').style.display = 'none';
+}
+
+// Close modal when clicking outside modal content
+window.onclick = function(event) {
+  const modal = document.getElementById('authModal');
+  if (event.target === modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
+
+        
+        <!-- For footer -->
+         
+        <script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  });
+
+  document.querySelectorAll('.animate').forEach(el => observer.observe(el));
+         </script>
 
      </body>
  </html>   

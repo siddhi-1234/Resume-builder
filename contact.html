@@ -1,0 +1,316 @@
+ <!DOCTYPE html>
+ <html>
+    <head>
+        <title> Resume Builder</title>
+
+        <!-- Bootstrap link -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+
+        <!--Font awesome icons -->
+       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+        <!-- Css linking -->
+         <link rel="stylesheet" href="style.css">
+
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    </head>
+    <body>
+
+        <!-- Navbar section -->
+<header class="header">
+  <a href="#" class="logo">
+    <img src="Images/logo.jpg" alt="ResumeCraft Logo" />
+    <span>ResumeCraft</span>
+  </a>
+  <nav class="navbar">
+    <a href="index.html">Home</a>
+    <a href="feature.html">Features</a>
+    <a href="template.html">Templates</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <div class="auth-buttons">
+    <button class="btn" onclick="openModal('signup')"><i class="fa fa-user-plus"></i> Sign Up</button>
+    <button class="btn" onclick="openModal('login')"><i class="fa fa-sign-in-alt"></i> Login</button>
+  </div>
+</header>
+
+   <!-- Login and Sign up -->
+
+<div id="authModal" class="auth-modal">
+  <div class="auth-modal-content">
+    <span class="auth-modal-close" onclick="closeModal()">&times;</span>
+    <div id="modalContent"></div>
+  </div>
+</div>
+
+    <!-- Header Section -->
+<section class="contact-hero">
+  <div class="contact-hero-content">
+    <h1 class="animate-fade-in">Get In Touch</h1>
+    <p class="animate-slide-up">We'd love to hear from you! Whether you have a question, feedback, or just want to say hello, feel free to reach out.</p>
+  </div>
+</section>
+
+    <!-- Contact details -->
+<section class="contact-form-section">
+  <div class="form-container">
+    <h2 class="animate-fade-in">Send Us a Message</h2>
+    <p class="animate-slide-up">Fill out the form below and we’ll get back to you shortly.</p>
+    
+    <form id="contactForm" class="contact-form animate-slide-up">
+      <div class="form-group">
+        <input type="text" id="name" required>
+        <label for="name">Your Name</label>
+      </div>
+      <div class="form-group">
+        <input type="email" id="email" required>
+        <label for="email">Your Email</label>
+      </div>
+      <div class="form-group">
+        <input type="text" id="subject" required>
+        <label for="subject">Subject</label>
+      </div>
+      <div class="form-group">
+        <textarea id="message" rows="5" required></textarea>
+        <label for="message">Your Message</label>
+      </div>
+      <button type="submit" class="submit-btn">Send Message</button>
+    </form>
+  </div>
+</section>
+
+    <!-- Office details -->
+<section class="contact-info-section">
+  <div class="info-container">
+    <h2 class="animate-fade-in">Our Contact Information</h2>
+    <p class="info-subtext animate-slide-up">Have any questions or need assistance? Feel free to reach out to us using the details below. We're here to help!</p>
+
+    <div class="info-grid">
+      <div class="info-card animate-slide-up">
+        <i class="fas fa-envelope"></i>
+        <h4>Email</h4>
+        <p>support@resumecraft.com</p>
+      </div>
+      <div class="info-card animate-slide-up">
+        <i class="fas fa-phone-alt"></i>
+        <h4>Phone</h4>
+        <p>+1 (555) 123-4567</p>
+      </div>
+      <div class="info-card animate-slide-up">
+        <i class="fas fa-map-marker-alt"></i>
+        <h4>Address</h4>
+        <p>123 Resume Lane, Suite 100<br>New York, NY 10001</p>
+      </div>
+      <div class="info-card animate-slide-up">
+        <i class="fas fa-clock"></i>
+        <h4>Hours</h4>
+        <p>Mon - Fri: 9:00 AM – 6:00 PM</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+         <!-- google map -->
+          <section class="map-section" id="map">
+  <div class="map-container animate-map">
+    <h2 class="section-title">Visit Us</h2>
+    <p class="section-subtitle">Find our office easily on the map below</p>
+
+    <div class="map-embed">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.0864819257273!2d-122.41941508468385!3d37.77492977975939!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80858064e3c6fbb3%3A0x4b144e0b993cd95b!2sSan+Francisco%2C+CA%2C+USA!5e0!3m2!1sen!2sin!4v1596453729135!5m2!1sen!2sin"
+        width="100%"
+        height="400"
+        frameborder="0"
+        allowfullscreen=""
+        aria-hidden="false"
+        tabindex="0"
+        loading="lazy"
+      ></iframe>
+    </div>
+  </div>
+</section>
+
+         <!-- testimonial section -->
+          <section class="testimonial-section" id="testimonials">
+  <h2 class="section-title">What Our Users Say</h2>
+  <p class="section-subtitle">Trusted by thousands of professionals</p>
+
+  <div class="testimonial-container animate-testimonials">
+    <div class="testimonial-card">
+      <img src="Images/customer1.jpg" alt="User Photo">
+      <p>"ResumeCraft helped me land 3 interviews in a week. Super easy to use!"</p>
+      <h4>Aarav Sharma</h4>
+      <span>Software Engineer</span>
+    </div>
+
+    <div class="testimonial-card">
+      <img src="Images/customer3.jpg" alt="User Photo">
+      <p>"Professional templates and quick export to PDF. I loved it!"</p>
+      <h4>Sneha Kapoor</h4>
+      <span>HR Manager</span>
+    </div>
+
+    <div class="testimonial-card">
+      <img src="Images/customer5.jpg" alt="User Photo">
+      <p>"A clean UI and excellent features. It made my job search easier."</p>
+      <h4>Rohit Verma</h4>
+      <span>Marketing Associate</span>
+    </div>
+  </div>
+
+  <div class="trust-logos animate-testimonials">
+    <img src="Images/tcsLogo.jpg" alt="TCS" />
+    <img src="Images/infosysLogo.jpg" alt="Infosys" />
+    <img src="Images/deloitte.jpeg" alt="Deloitte" />
+    <img src="Images/accentureLogo.jpeg" alt="Accenture" />
+  </div>
+</section>
+
+      <!-- Footer -->
+ <footer class="site-footer">
+  <div class="footer-container">
+    <div class="ffooter-brand animate">
+      <img src="Images/logo.jpg" alt="ResumeCraft Logo" class="footer-logo" />
+      <h3>ResumeCraft</h3>
+      <p>Craft your dream resume effortlessly and land your next job with confidence.</p>
+    </div>
+
+    <div class="footer-links animate">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="feature.html">Features</a></li>
+        <li><a href="template.html">Templates</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-contact animate">
+      <h4>Contact</h4>
+      <p>Email: support@resumecraft.com</p>
+      <p>Phone: +1 234 567 890</p>
+    </div>
+
+    <div class="footer-social animate">
+      <h4>Follow Us</h4>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; 2025 ResumeCraft. All rights reserved.</p>
+  </div>
+</footer>
+
+
+
+<script src="script.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+
+        <!-- For login and sign in -->
+     <script>
+function openModal(type) {
+  const modal = document.getElementById('authModal');
+  const content = document.getElementById('modalContent');
+  modal.style.display = 'block';
+
+  if (type === 'signup') {
+    content.innerHTML = `
+      <h2>Sign Up</h2>
+      <form>
+        <input type="text" placeholder="Full Name" required>
+        <input type="email" placeholder="Email" required>
+        <input type="password" placeholder="Password" required>
+        <button type="submit">Create Account</button>
+      </form>
+    `;
+  } else if (type === 'login') {
+    content.innerHTML = `
+      <h2>Login</h2>
+      <form>
+        <input type="email" placeholder="Email" required>
+        <input type="password" placeholder="Password" required>
+        <button type="submit">Login</button>
+      </form>
+    `;
+  }
+}
+
+function closeModal() {
+  document.getElementById('authModal').style.display = 'none';
+}
+
+// Close modal when clicking outside modal content
+window.onclick = function(event) {
+  const modal = document.getElementById('authModal');
+  if (event.target === modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
+         
+       <!-- contact details -->
+        <script>
+document.getElementById("contactForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+  alert("Thank you for your message! We'll be in touch soon.");
+  this.reset();
+});
+</script>
+
+         <!-- google map -->
+          <script>
+  const mapObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        mapObserver.unobserve(entry.target);
+      }
+    });
+  });
+
+  document.querySelectorAll('.animate-map').forEach(el => mapObserver.observe(el));
+</script>
+            
+         <!-- testimonial section -->
+          <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    });
+
+    document.querySelectorAll('.animate-testimonials').forEach(el => {
+      observer.observe(el);
+    });
+  });
+</script>
+
+               <!-- For footer -->
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  });
+
+  document.querySelectorAll('.animate').forEach(el => observer.observe(el));
+</script>
+
+      </body>
+ </html>

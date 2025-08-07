@@ -1,0 +1,131 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Template 6 - Editable Resume</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      color: #000;
+    }
+    .resume-header {
+      background-color: #00695c;
+      color: #fff;
+      text-align: center;
+      padding: 40px 20px 20px;
+    }
+    .resume-header h1,
+    .resume-header p {
+      margin: 8px 0;
+    }
+    .resume-container {
+      max-width: 800px;
+      margin: 40px auto;
+      background: #fff;
+      padding: 40px;
+      border: 3px solid #00695c;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+    .section-title {
+      color: #00695c;
+      font-weight: bold;
+      font-size: 1.5rem;
+      margin-top: 40px;
+      margin-bottom: 20px;
+    }
+    .skills-list, .cert-list, ul {
+      padding-left: 20px;
+    }
+    .download-btn {
+      display: block;
+      margin: 40px auto 0;
+      padding: 12px 30px;
+      background-color: #00695c;
+      color: white;
+      border: none;
+      font-size: 1.1rem;
+      border-radius: 8px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .download-btn:hover {
+      background-color: #004d40;
+    }
+    [contenteditable=true]:focus {
+      outline: 2px dashed #00695c;
+      
+    }
+  </style>
+</head>
+<body>
+
+  <div id="resume">
+    <div class="resume-header">
+      <h1 contenteditable="true">Cameron Malfara</h1>
+      <p contenteditable="true">San Francisco, CA 12345 | (123) 456-7890 | cameronmalfara@example.com</p>
+      <p contenteditable="true">WWW: LinkedIn | Portfolio</p>
+    </div>
+
+    <div class="resume-container">
+      <section>
+        <p contenteditable="true"><strong>A software developer with seven years of experience specializing in Agile software development, back-end development, Python, and web development. A strong history of developing innovative application features and software solutions to enhance the UX.</strong></p>
+      </section>
+
+      <section>
+        <h2 class="section-title">Key Skills</h2>
+        <ul class="skills-list">
+          <li contenteditable="true">Java, Python, and C++</li>
+          <li contenteditable="true">UI design</li>
+          <li contenteditable="true">Quality assurance testing</li>
+          <li contenteditable="true">MySQL</li>
+          <li contenteditable="true">Software development</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="section-title">Professional Experience</h2>
+
+        <p contenteditable="true"><strong>Software Developer</strong><br>
+        <em>Lore Gaming, San Diego, CA | November 2019 - Current</em></p>
+        <ul>
+          <li contenteditable="true">Developed system architecture to streamline bandwidth and reduce downtime and lag for users by up to 20%.</li>
+          <li contenteditable="true">Collaborated with gaming designers to create interactive solutions, including matchmaking features.</li>
+          <li contenteditable="true">Supported Agile-Waterfall hybrid integration, reducing delivery timelines by 15%.</li>
+        </ul>
+
+        <p contenteditable="true"><strong>Software Developer</strong><br>
+        <em>Ark Tech Solutions Inc., San Diego, CA | June 2016 - Current</em></p>
+        <ul>
+          <li contenteditable="true">Designed a mobile app in Python for recruiters and jobseekers with 3M+ downloads.</li>
+          <li contenteditable="true">Increased user satisfaction by 30% with new app features.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="section-title">Education</h2>
+        <p contenteditable="true">Bachelor of Science (B.S.) Software Engineering, June 2016<br>University of San Diego, San Diego, CA</p>
+      </section>
+
+      <section>
+        <h2 class="section-title">Certifications</h2>
+        <ul class="cert-list">
+          <li contenteditable="true">Certified Software Development Professional (CSDP), IEEE, 2018</li>
+          <li contenteditable="true">CompTIA A+, 2016</li>
+        </ul>
+      </section>
+    </div>
+  </div>
+
+  <button class="download-btn" onclick="downloadPDF()">Download PDF</button>
+
+  <script>
+    function downloadPDF() {
+      const element = document.getElementById('resume');
+      html2pdf().from(element).save('resume.pdf');
+    }
+  </script>
+</body>
+</html>
