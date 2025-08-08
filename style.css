@@ -8,14 +8,15 @@ body {
 /* Header styling */
 .header {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   background-color:  #324A66;
   padding: 20px 40px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-  position: sticky;
+  position: relative;
   top: 0;
-  z-index: 1000;
+  z-index: 10;
 }
 
 /* Logo styling */
@@ -1788,7 +1789,6 @@ html {
 
 
 /* Media Queries */
-/* ========== Responsive for Mobile Devices ========== */
 @media (max-width: 768px) {
   /* General padding & alignment */
   .section-title {
@@ -1820,37 +1820,29 @@ html {
   }
 
   /* Navbar container styling for mobile */
-@media (max-width: 768px) {
-  .navbar {
+  @media (max-width: 768px) {
+  .header {
     flex-direction: column;
     align-items: flex-start;
-    padding: 10px 20px;
   }
-
-  .navbar .nav-links {
-    display: flex;
+  .navbar,
+  .auth-buttons {
     flex-direction: column;
+    align-items: stretch;
     width: 100%;
-    gap: 10px;
-    margin-top: 10px;
+  }
+.navbar a,
+  .auth-buttons .btn {
+    width: 100%;
+    text-align: left;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
   }
 
-  .navbar .auth-buttons {
-    margin-top: 10px;
-    width: 100%;
-    display: flex;
-    justify-content: flex-start;
-    gap: 10px;
-  }
-
-  .navbar .auth-buttons button,
-  .navbar .auth-buttons a {
-    width: auto;
-    padding: 8px 16px;
-    font-size: 0.9rem;
+  .auth-buttons .btn {
+    margin: 5px 0;
   }
 }
-
 
   /* Contact Form Adjustments */
   .contact-form form {
@@ -1882,4 +1874,9 @@ html {
     padding: 30px 15px;
   }
 }
+
+
+
+
+
 
