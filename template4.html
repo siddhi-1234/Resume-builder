@@ -20,6 +20,21 @@ body {
   border-radius: 8px;
   overflow: hidden;
 }
+.cta-button {
+  display: inline-block;
+  background-color: #5DADE2;
+  color: #0A192F;
+  font-weight: bold;
+  padding: 14px 30px;
+  font-size: 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+.cta-button:hover {
+  background-color: #7FB3D5;
+  transform: translateY(-3px);
+}
 .sidebar {
   width: 200px;
   background-color: #2c3e50;
@@ -100,20 +115,6 @@ body {
   max-width: 800px;
   margin: 30px auto;
   text-align: center;
-}
-button {
-  display: inline-block;
-  margin: 10px 5px;
-  padding: 12px 24px;
-  font-size: 14px;
-  background: #2c3e50;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-button:hover {
-  background: #1a242f;
 }
 input[type="file"] {
   display: none;
@@ -199,7 +200,7 @@ label.upload-label:hover {
 <div class="controls">
   <label for="photo-upload" class="upload-label">Upload Photo</label>
   <input type="file" accept="image/*" id="photo-upload" onchange="loadPhoto(event)">
-  <button onclick="downloadResume()">Download PDF</button>
+ <a href="template.html" class="cta-button">Back</a>
 </div>
 
 <script>
@@ -217,18 +218,7 @@ function loadPhoto(event) {
   reader.readAsDataURL(file);
 }
 
-function downloadResume() {
-  const element = document.getElementById('resume');
-  const opt = {
-    margin: 0,
-    filename: 'Resume.pdf',
-    image: { type: 'jpeg', quality: 0.98 },
-    html2canvas: { scale: 2, useCORS: true },
-    jsPDF: { unit: 'pt', format: 'a4', orientation: 'portrait' },
-    pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
-  };
-  html2pdf().set(opt).from(element).save();
-}
+
 </script>
 
 </body>

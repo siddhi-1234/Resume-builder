@@ -10,6 +10,7 @@
       padding: 0;
       color: #000;
     }
+    
     .header {
       background-color: #c39200;
       color: white;
@@ -53,16 +54,17 @@
       font-style: italic;
       margin-bottom: 5px;
     }
-    #downloadBtn {
-      display: block;
-      margin: 40px auto;
-      background: #c39200;
-      color: white;
-      border: none;
-      padding: 15px 25px;
-      font-size: 18px;
-      cursor: pointer;
-      border-radius: 8px;
+    .downloadBtn {
+      display: inline-block;
+      background: yellow;
+      color: black;
+  font-weight: bold;
+  padding: 14px 30px;
+  font-size: 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.3s ease, transform 0.3s ease;
+  margin-left: 50%;
     }
   </style>
 </head>
@@ -127,7 +129,7 @@
       <li contenteditable="true">Python Institute Certified Associate in Python Programming (PCAP), 2019</li>
     </ul>
 
-    <button id="downloadBtn" onclick="downloadPDF()">Download PDF</button>
+    <a href="template.html" class="downloadBtn">Back</a>
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
@@ -141,13 +143,6 @@
         };
         reader.readAsDataURL(file);
       }
-    }
-
-    function downloadPDF() {
-      html2pdf()
-        .set({ margin: 0, filename: 'resume-template9.pdf', image: { type: 'jpeg', quality: 0.98 }, html2canvas: { scale: 2 }, jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' } })
-        .from(document.body)
-        .save();
     }
   </script>
 

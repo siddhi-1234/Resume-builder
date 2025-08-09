@@ -59,18 +59,19 @@
       color: white;
     }
     .download-btn {
-      display: block;
-      margin: 40px auto 0;
-      padding: 12px 30px;
       background-color: #f26522;
       color: white;
-      border: none;
-      font-size: 1.1rem;
-      border-radius: 8px;
-      text-decoration: none;
-      cursor: pointer;
-      transition: 0.3s;
+      display: inline-block;
+      font-weight: bold;
+  padding: 14px 30px;
+  font-size: 16px;
+  margin-left: 50%;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.3s ease, transform 0.3s ease;
+      
     }
+
     .download-btn:hover {
       background-color: #c1440f;
     }
@@ -142,13 +143,8 @@
 
   </div>
 
-  <button class="download-btn" onclick="downloadPDF()">Download PDF</button>
+   <a href="template.html" class="download-btn">Back</a>
 
-  <script>
-    function downloadPDF() {
-      const element = document.getElementById('resume');
-      html2pdf().from(element).save('resume.pdf');
-    }
-  </script>
+ 
 </body>
 </html>

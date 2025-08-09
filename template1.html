@@ -11,6 +11,21 @@ body {
   margin: 0;
   padding: 20px;
 }
+.cta-button {
+  display: inline-block;
+  background-color: #5DADE2;
+  color: #0A192F;
+  font-weight: bold;
+  padding: 14px 30px;
+  font-size: 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+.cta-button:hover {
+  background-color: #7FB3D5;
+  transform: translateY(-3px);
+}
 .resume {
   display: block;
   max-width: 800px;
@@ -195,7 +210,7 @@ button:hover {
   <label>Education:</label><textarea oninput="document.getElementById('education').textContent=this.value"></textarea>
   <label>Languages:</label><textarea oninput="document.getElementById('languages').textContent=this.value"></textarea>
 
-  <button onclick="downloadResume()">Download PDF</button>
+  <a href="template.html" class="cta-button">Back</a>
 </div>
 
 <script>
@@ -228,18 +243,7 @@ function loadImage(event) {
   };
   reader.readAsDataURL(event.target.files[0]);
 }
-function downloadResume() {
-  const element = document.getElementById('resume');
-  const opt = {
-    margin: 0,
-    filename: 'Resume.pdf',
-    image: { type: 'jpeg', quality: 0.98 },
-    html2canvas: { scale: 2, useCORS: true },
-    jsPDF: { unit: 'pt', format: 'a4', orientation: 'portrait' },
-    pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
-  };
-  html2pdf().set(opt).from(element).save();
-}
+
 </script>
 
 </body>
